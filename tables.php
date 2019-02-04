@@ -61,7 +61,7 @@
             <span>Charts</span></a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="tables.html">
+          <a class="nav-link" href="tables.php">
             <i class="fas fa-fw fa-table"></i>
             <span>Tables</span></a>
         </li>
@@ -146,13 +146,7 @@
         <!-- /.container-fluid -->
 
         <!-- Sticky Footer -->
-        <footer class="sticky-footer">
-          <div class="container my-auto">
-            <div class="copyright text-center my-auto">
-              <span>Copyright © Your Website 2018</span>
-            </div>
-          </div>
-        </footer>
+      
 
       </div>
       <!-- /.content-wrapper -->

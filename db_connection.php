@@ -2,13 +2,14 @@
 
 function OpenCon()
  {
- $dbhost = "localhost";
- $dbuser = "root";
- $dbpass = "";
- $db = "smeter";
+ $dbhost = "sl-us-south-1-portal.49.dblayer.com";
+ $dbuser = "admin";
+ $dbpass = "SKZDTJWCQNPIRIFO";
+ $db = "smart_meter";
+ $port = "15620";
 
 
- $conn = new mysqli($dbhost, $dbuser, $dbpass,$db) or die("Connect failed: %s\n". $conn->error);
+ $conn = new mysqli($dbhost, $dbuser, $dbpass,$db,$port) or die("Connect failed: %s\n". $conn->error);
 
  
  return $conn;

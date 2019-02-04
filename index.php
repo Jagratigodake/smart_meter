@@ -1,13 +1,13 @@
 <?php
-include 'db_connection.php';
+ include 'db_connection.php';
 //$p_factor=0;
 //if(isset($GET['pf']))
 //{
-	//$p_factor = $_GET['pf']; }
-	$conn= OpenCon();
-$sql= "select* from get_values order by time DESC LIMIT 1;";
-$result = $conn->query($sql);
-$row= $result->fetch_assoc();   
+//	$p_factor = $_GET['pf']; }
+ 	$conn= OpenCon();
+ $sql= "select * from smart_meter order by Record_Time DESC LIMIT 1;";
+ $result = $conn->query($sql);
+ $row= $result->fetch_assoc(); 
 //print_r($row);
 //echo gettype($row)."\n";     
 
@@ -47,7 +47,7 @@ $row= $result->fetch_assoc();
 
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-      <a class="navbar-brand mr-1" href="index.html">Smart Meter</a>
+      <a class="navbar-brand mr-1" href="index.php">Smart Meter</a>
 
       <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
         <i class="fas fa-bars"></i>
@@ -55,7 +55,14 @@ $row= $result->fetch_assoc();
 
       <!-- Navbar Search -->
       <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-        
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="button">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
       </form>
 
       <!-- Navbar -->
@@ -80,12 +87,21 @@ $row= $result->fetch_assoc();
       <!-- Sidebar -->
       <ul class="sidebar navbar-nav">
         <li class="nav-item active">
-          <a class="nav-link" href="index.html">
+          <a class="nav-link" href="index.php">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span>
           </a>
         </li>
-        
+         <li class="nav-item">
+          <a class="nav-link" href="#">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Charts</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="tables.html">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Tables</span></a>
+        </li>
       </ul>
 
       <div id="content-wrapper">
@@ -96,30 +112,41 @@ $row= $result->fetch_assoc();
 		  <div class="col-xl-12 col-sm-12 mb-12">
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="#">Dashboard</a>
+              <a href="index.php">Dashboard</a>
             </li>
             <li class="breadcrumb-item active">Overview</li>
 			  
-			<li   class="pull-right breadcrumb-item active"><?php
-			echo $row['time'];
-
-
-?></li>
+	
           </ol>
 </div>
           <!-- Icon Cards-->
           <div class="row">
           
 			
-			
+			<div class="col-xl-2 col-sm-2 mb-2">
+              <div class="card text-white bg-primary o-hidden h-100" style="background-color:#a1edf7 !important;">
+                <div class="card-body">
+                  <div class="card-body-icon">
+                    <i class="fas fa-bolt"></i>
+                  </div>
+                  <div class="mr-5"><?php echo $row['Active_Total_Import']; ?>kwh</div>
+                </div>
+                <a class="card-footer text-white clearfix small z-1" href="#">
+                  <span class="float-left">unit(kwh)</span>
+                  <span class="float-right">
+                    <i class="fas fa-angle-right"></i>
+                  </span>
+                </a>
+              </div>
+            </div>
 		
 			<div class="col-xl-2 col-sm-2 mb-2">
-              <div class="card text-white bg-primary o-hidden h-100">
+              <div class="card text-white bg-primary o-hidden h-100" style="background-color:#fa8072 !important;">
                 <div class="card-body">
                   <div class="card-body-icon">
                     <i class="fas fa-bolt"></i> 
                   </div>
-                  <div class="mr-5"><?php echo $row['frequency (Hz)']; ?>Hz</div>
+                  <div class="mr-5"><?php echo $row['Frequency_Hz']; ?>Hz</div>
                 </div>
                 <a class="card-footer text-white clearfix small z-1" href="#">
                   <span class="float-left">frequency</span>
@@ -129,29 +156,14 @@ $row= $result->fetch_assoc();
                 </a>
               </div>
             </div>
+			
 			<div class="col-xl-2 col-sm-2 mb-2">
-              <div class="card text-white bg-primary o-hidden h-100">
-                <div class="card-body">
-                  <div class="card-body-icon">
-                    <i class="fas fa-bolt"></i>
-                  </div>
-                  <div class="mr-5"><?php echo $row['unitconsumption(kwh)']; ?>kwh</div>
-                </div>
-                <a class="card-footer text-white clearfix small z-1" href="#">
-                  <span class="float-left">unitconsumption</span>
-                  <span class="float-right">
-                    <i class="fas fa-angle-right"></i>
-                  </span>
-                </a>
-              </div>
-            </div>
-			<div class="col-xl-2 col-sm-2 mb-2">
-              <div class="card text-white bg-primary o-hidden h-100">
+              <div class="card text-white bg-primary o-hidden h-100" style="background-color:#D6C3C9 !important;">
                 <div class="card-body">
                   <div class="card-body-icon">
 						<i class="fas fa-bolt"></i>
                   </div>
-                  <div class="mr-5"><?php echo $row['voltage(avg)']; ?>volts</div>
+                  <div class="mr-5"><?php echo $row['Average_Voltage']; ?>volts</div>
                 </div>
                 <a class="card-footer text-white clearfix small z-1" href="#">
                   <span class="float-left">voltage</span>
@@ -162,12 +174,12 @@ $row= $result->fetch_assoc();
               </div>
             </div>
             <div class="col-xl-2 col-sm-2 mb-2">
-              <div class="card text-white bg-warning o-hidden h-100">
+              <div class="card text-white bg-warning o-hidden h-100" style="background-color:#A5B2D7 !important;">
                 <div class="card-body">
                   <div class="card-body-icon">
                     <i class="fas fa-fw fa-list"></i>
                   </div>
-                  <div class="mr-5"><?php echo $row['current(avg)']; ?>amp</div>
+                  <div class="mr-5"><?php echo $row['Neutral_Line_current']; ?>amp</div>
                 </div>
                 <a class="card-footer text-white clearfix small z-1" href="#">
                   <span class="float-left">current</span>
@@ -178,14 +190,14 @@ $row= $result->fetch_assoc();
               </div>
             </div>
            <div class="col-xl-2 col-sm-2 mb-2">
-              <div class="card text-white bg-success o-hidden h-100">
+              <div class="card text-white bg-success o-hidden h-100" style="background-color:#D5E494 !important;" >
                 <div class="card-body">
                   <div class="card-body-icon">
                     <i class="fas fa-fw fa-shopping-cart"></i>
                   </div>
-                  <div class="mr-5"><?php echo $row['powerfactor(avg)'];?>kw</div>
+                  <div class="mr-5"><?php echo $row['Avg_power_factor'];?>kw</div>
                 </div>
-                <a class="card-footer text-white clearfix small z-1" href="#">
+                <a class="card-footer text-white clearfix small z-1" href="graph1.php">
                   <span class="float-left">powerfactor</span>
                   <span class="float-right">
                     <i class="fas fa-angle-right"></i>
@@ -194,6 +206,22 @@ $row= $result->fetch_assoc();
               </div>
             </div>
         
+		  <div class="col-xl-2 col-sm-2 mb-2">
+              <div class="card text-white bg-success o-hidden h-100" style="background-color:#7FD1B9 !important;">
+                <div class="card-body">
+                  <div class="card-body-icon">
+                    <i class="fas fa-fw fa-shopping-cart"></i>
+                  </div>
+                  <div class="mr-5"><?php echo $row['Record_Time'];?></div>
+                </div>
+                <a class="card-footer text-white clearfix small z-1" href="graph1.php">
+                  <span class="float-left">Time</span>
+                  <span class="float-right">
+                    <i class="fas fa-angle-right"></i>
+                  </span>
+                </a>
+              </div>
+            </div>
           </div>
 
           <!-- Area Chart Example-->
@@ -201,7 +229,7 @@ $row= $result->fetch_assoc();
 
           <!-- DataTables Example -->
         <?php 
-		$sql = "select * from get_values";
+		$sql = "select * from smart_meter";
 		?>
                     
       <div class="card mb-3">
@@ -213,13 +241,14 @@ $row= $result->fetch_assoc();
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
+					 <th>TIME</th>
                       <th>ID</th>
 					  <th>FREQUENCY</th>
-                     <th>UNIT_CONSUMTION</th>
+                     <th>UNIT(kwh)</th>
                       <th>VOLTAGE</th>
-                      <th>CURRENT</th>
-					  <th>POWER_FACTOR</th>
-					  <th>TIME</th>
+                      <th>POWER_FACTOR</th>
+					  <th>CURRENT</th>
+					 
                      </tr>
                   </thead>
           
@@ -235,13 +264,14 @@ $row= $result->fetch_assoc();
             ?>
                  
             <tr>
-                <td><?php echo $row['var_key']; ?></td>
-                <td><?php echo $row['frequency (Hz)']; ?></td>
-                <td><?php echo $row['unitconsumption(kwh)']; ?></td>
-                <td><?php echo $row['voltage(avg)']; ?></td>
-                <td><?php echo $row['current(avg)'] ;?></td>
-				<td><?php echo $row['powerfactor(avg)']; ?></td>
-                <td><?php echo $row['time'] ;?></td>
+			 <td><?php echo $row['Record_Time'] ;?></td>
+                <td><?php echo $row['id']; ?></td>
+                <td><?php echo $row['Frequency_Hz']; ?></td>
+                <td><?php echo $row['Active_Total_Import']; ?></td>
+                <td><?php echo $row['Average_Voltage']; ?></td>
+                <td><?php echo $row['Avg_power_factor'] ;?></td>
+				<td><?php echo $row['Neutral_Line_current']; ?></td>
+               
               
             </tr>
         <?php

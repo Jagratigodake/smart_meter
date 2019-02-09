@@ -1,4 +1,19 @@
 <?php
+
+session_start();
+
+if($_SESSION['loggedin'] != true){
+    header("location: login_page.php");
+}
+if (isset($_GET['logout'])) {
+  session_destroy();
+  unset($_SESSION['username']);
+  header("location: login_page.php");
+}
+
+?>
+
+<?php
  include 'db_connection.php';
 //$p_factor=0;
 //if(isset($GET['pf']))
@@ -24,7 +39,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin - Dashboard</title>
+    <title> Dashboard</title>
 
     <!-- Bootstrap core CSS-->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -66,6 +81,7 @@
       </form>
 
       <!-- Navbar -->
+	  <?php include 'sidebar.php' ?>
       <ul class="navbar-nav ml-auto ml-md-0">
         
        
@@ -85,24 +101,7 @@
     <div id="wrapper">
 
       <!-- Sidebar -->
-      <ul class="sidebar navbar-nav">
-        <li class="nav-item active">
-          <a class="nav-link" href="index.php">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span>
-          </a>
-        </li>
-         <li class="nav-item">
-          <a class="nav-link" href="#">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Charts</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="tables.html">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Tables</span></a>
-        </li>
-      </ul>
+     
 
       <div id="content-wrapper">
 
@@ -229,7 +228,7 @@
 
           <!-- DataTables Example -->
         <?php 
-		$sql = "select * from smart_meter";
+		$sql = "select * from smart_meter order by Record_Time DESC limit 100";
 		?>
                     
       <div class="card mb-3">
@@ -264,7 +263,9 @@
             ?>
                  
             <tr>
-			 <td><?php echo $row['Record_Time'] ;?></td>
+       <!-- <td><?php //echo $row['Record_Time']  ;?></td> -->
+       <?php $time = date( "Y-M-d H:i:s", strtotime( $row['Record_Time'] ) + 60*60*5 + 30*60 );?>
+                <td><?php echo $time  ;?></td>
                 <td><?php echo $row['id']; ?></td>
                 <td><?php echo $row['Frequency_Hz']; ?></td>
                 <td><?php echo $row['Active_Total_Import']; ?></td>

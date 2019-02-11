@@ -3,7 +3,7 @@
 session_start();
 
 if($_SESSION['loggedin'] != true){
-    header("location: login_page.php");
+    header("location: index.php");
 }
 
 ?>
@@ -50,7 +50,7 @@ if($_SESSION['loggedin'] != true){
 
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-      <a class="navbar-brand mr-1" href="index.php">Smart Meter</a>
+      <a class="navbar-brand mr-1" href="home.php">Smart Meter</a>
 
       <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
         <i class="fas fa-bars"></i>
@@ -79,7 +79,7 @@ if($_SESSION['loggedin'] != true){
       <!-- Sidebar -->
       <ul class="sidebar navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="index.php">
+          <a class="nav-link" href="home.php">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span>
           </a>
@@ -112,7 +112,7 @@ if($_SESSION['loggedin'] != true){
           <!-- Breadcrumbs-->
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="index.php">Dashboard</a>
+              <a href="home.php">Dashboard</a>
             </li>
             <li class="breadcrumb-item active">Charts</li>
           </ol>

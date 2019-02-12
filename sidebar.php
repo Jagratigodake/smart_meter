@@ -62,7 +62,7 @@
        <!-- logged in user information -->
       <?php  if (isset($_SESSION['username'])) : ?>
       <li class="nav-item">
-        <a class="nav-link" href="index.php?logout='1'">
+        <a class="nav-link" href="home.php?logout='1'">
           <i class="fas fa-fw fa-circle"></i>
           <span>Logout</span></a>
       </li>

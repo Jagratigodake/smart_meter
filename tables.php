@@ -3,7 +3,7 @@
 session_start();
 
 if($_SESSION['loggedin'] != true){
-    header("location: login_page.php");
+    header("location: index.php");
 }
 
 ?>
@@ -34,7 +34,7 @@ if($_SESSION['loggedin'] != true){
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin - Dashboard</title>
+    <title> Dashboard</title>
 
     <!-- Bootstrap core CSS-->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -57,7 +57,7 @@ if($_SESSION['loggedin'] != true){
 
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-      <a class="navbar-brand mr-1" href="index.php">Smart Meter</a>
+      <a class="navbar-brand mr-1" href="home.php".php">Smart Meter</a>
 
       <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
         <i class="fas fa-bars"></i>
@@ -106,7 +106,7 @@ if($_SESSION['loggedin'] != true){
 		  <div class="col-xl-12 col-sm-12 mb-12">
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="index.php">Dashboard</a>
+              <a href="home.php">Dashboard</a>
             </li>
             <li class="breadcrumb-item active">Overview</li>
 			  

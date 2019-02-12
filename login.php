@@ -14,7 +14,7 @@ if($result->num_rows > 0){
     session_start();
     $_SESSION['username'] = $details['username'];
     $_SESSION['loggedin'] = true;
-    // echo "come";
+     //echo "come";ss
     header("location: home.php?success=1");
 }else{
     // echo "not come";

@@ -20,7 +20,7 @@ if (isset($_GET['logout'])) {
 //{
 //	$p_factor = $_GET['pf']; }
  	$conn= OpenCon();
- $sql= "select * from smart_meter order by Record_Time DESC LIMIT 1;";
+ $sql= "select * from smart_meter order by Record_Time desc limit 1;";
  $result = $conn->query($sql);
  $row= $result->fetch_assoc(); 
 //print_r($row);
@@ -265,7 +265,9 @@ if (isset($_GET['logout'])) {
                  
             <tr>
        <!-- <td><?php //echo $row['Record_Time']  ;?></td> -->
-       <?php $time = date( "Y-M-d H:i:s", strtotime( $row['Record_Time'] ) + 60*60*5 + 30*60 );?>
+       <?php 
+       $time = date( "Y-M-d H:i:s", strtotime( $row['Record_Time'] ) + 60*60*5 + 30*60 );
+       ?>
                 <td><?php echo $time  ;?></td>
                 <td><?php echo $row['id']; ?></td>
                 <td><?php echo $row['Frequency_Hz']; ?></td>

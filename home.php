@@ -211,7 +211,8 @@ if (isset($_GET['logout'])) {
                   <div class="card-body-icon">
                     <i class="fas fa-fw fa-shopping-cart"></i>
                   </div>
-                  <div class="mr-5"><?php echo $row['Record_Time'];?></div>
+                  <div class="mr-5"> <?php $time = date( "Y-M-d H:i:s", strtotime( $row['Record_Time'] ) + 60*60*5 + 30*60 );?>
+                <td><?php echo $time  ;?></td></div>
                 </div>
                 <a class="card-footer text-white clearfix small z-1" href="graph1.php">
                   <span class="float-left">Time</span>

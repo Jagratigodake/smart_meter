@@ -20,7 +20,7 @@ if (isset($_GET['logout'])) {
 //{
 //	$p_factor = $_GET['pf']; }
  	$conn= OpenCon();
- $sql= "select * from smart_meter order by Record_Time desc limit 1;";
+ $sql= "select * from smart_meter order by id limit 1;";
  $result = $conn->query($sql);
  $row= $result->fetch_assoc(); 
 //print_r($row);

@@ -15,6 +15,8 @@ if (isset($_GET['logout'])) {
 
 <?php
  include 'db_connection.php';
+
+
 //$p_factor=0;
 //if(isset($GET['pf']))
 //{
@@ -79,6 +81,7 @@ if (isset($_GET['logout'])) {
           </div>
         </div>
       </form>
+      
 
       <!-- Navbar -->
 	  <?php include 'sidebar.php' ?>
@@ -111,7 +114,7 @@ if (isset($_GET['logout'])) {
 		  <div class="col-xl-12 col-sm-12 mb-12">
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="index.php">Dashboard</a>
+              <a href="home.php">Dashboard</a>
             </li>
             <li class="breadcrumb-item active">Overview</li>
 			  
@@ -229,13 +232,19 @@ if (isset($_GET['logout'])) {
 
           <!-- DataTables Example -->
         <?php 
-		$sql = "select * from smart_meter order by Record_Time DESC limit 100";
+		$sql = "select * from smart_meter order by Record_Time desc limit 100";
 		?>
                     
       <div class="card mb-3">
             <div class="card-header">
               <i class="fas fa-table"></i>
               Data ENTRIES</div>
+            <div class="card-header">
+                <a class="btn btn-outline-dark" href='home.php?Yesterday=true' role="button">Yesterday</a>
+                <a class="btn btn-outline-dark" href='home.php?Today=true' role="button">Today</a>
+                <a class="btn btn-outline-dark" href="home.php?Month=true" role="button">Month</a>
+            </div>
+              
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -248,6 +257,7 @@ if (isset($_GET['logout'])) {
                       <th>VOLTAGE</th>
                       <th>POWER_FACTOR</th>
 					  <th>CURRENT</th>
+                        <th>COST</th>
 					 
                      </tr>
                   </thead>
@@ -255,6 +265,36 @@ if (isset($_GET['logout'])) {
         
 </div>
         <?php
+        function Yesterday()
+        {
+          $sql="select * from smart_meter where Record_Time >= CURDATE() - INTERVAL 1 DAY and Record_Time <CURDATE();";
+          return $sql;
+        }
+        if (isset($_GET['Yesterday']))
+        {
+          $sql=Yesterday();
+        }
+        function Today()
+        {
+          $sql="select * from smart_meter where Record_Time = CURDATE();";
+          return $sql;
+        }
+        if (isset($_GET['Today']))
+        {
+          $sql=Today();
+        }
+        function Month()
+        {
+          $sql="select * from smart_meter where month(Record_Time)=month(now());";
+          return $sql;
+        }
+        if (isset($_GET['Month']))
+        {
+          $sql=Month();
+        }
+
+
+
         $result = $conn->query($sql);
         if($result->num_rows  > 0){
 
@@ -274,7 +314,8 @@ if (isset($_GET['logout'])) {
                 <td><?php echo $row['Active_Total_Import']; ?></td>
                 <td><?php echo $row['Average_Voltage']; ?></td>
                 <td><?php echo $row['Avg_power_factor'] ;?></td>
-				<td><?php echo $row['Neutral_Line_current']; ?></td>
+				        <td><?php echo $row['Neutral_Line_current']; ?></td>
+                <td><?php echo (float)($row['Active_Total_Import']*7.15);?></td>
                
               
             </tr>

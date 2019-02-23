@@ -25,11 +25,15 @@ if(isset($_SESSION['loggedin'])){
 
     <title> Login</title>
 
-    <!-- Bootstrap core CSS-->
+     <!-- Bootstrap core CSS-->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom fonts for this template-->
     <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Page level plugin CSS-->
+    <!-- <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.css" rel="stylesheet"> -->
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin.css" rel="stylesheet">

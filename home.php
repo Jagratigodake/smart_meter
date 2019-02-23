@@ -51,7 +51,7 @@ if (isset($_GET['logout'])) {
 
 
     <!-- Page level plugin CSS-->
-    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.css" rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin.css" rel="stylesheet">

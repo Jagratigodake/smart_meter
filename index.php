@@ -66,7 +66,7 @@ if(isset($_SESSION['loggedin'])){
                 <label for="inputPassword">Password</label>
               </div>
             </div>
-            <button class="btn btn-primary btn-block" type="submit" >Login karo</button>
+            <button class="btn btn-primary btn-block" type="submit" >Login</button>
           </form>
         </div>
       </div>

@@ -22,7 +22,7 @@ if (isset($_GET['logout'])) {
 //{
 //	$p_factor = $_GET['pf']; }
  	$conn= OpenCon();
- $sql= "select * from smart_meter order by id limit 1;";
+ $sql= "select * from smart_meter order by id desc limit 1;";
  $result = $conn->query($sql);
  $row= $result->fetch_assoc(); 
 //print_r($row);
@@ -44,13 +44,14 @@ if (isset($_GET['logout'])) {
     <title> Dashboard</title>
 
     <!-- Bootstrap core CSS-->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom fonts for this template-->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet" type="text/css">
+
 
     <!-- Page level plugin CSS-->
-    <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin.css" rel="stylesheet">
@@ -60,7 +61,7 @@ if (isset($_GET['logout'])) {
 
   </head>
 
-  <body id="page-top">
+  <body id="page-top" >
 
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
@@ -114,7 +115,7 @@ if (isset($_GET['logout'])) {
 		  <div class="col-xl-12 col-sm-12 mb-12">
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="home.php">Dashboard</a>
+              <a href="home.php">Home</a>
             </li>
             <li class="breadcrumb-item active">Overview</li>
 			  
@@ -276,7 +277,7 @@ if (isset($_GET['logout'])) {
         }
         function Today()
         {
-          $sql="select * from smart_meter where Record_Time = CURDATE();";
+          $sql="select * from smart_meter where date(Record_Time)  = CURDATE();";
           return $sql;
         }
         if (isset($_GET['Today']))
@@ -285,7 +286,7 @@ if (isset($_GET['logout'])) {
         }
         function Month()
         {
-          $sql="select * from smart_meter where month(Record_Time)=month(now());";
+          $sql="select * from smart_meter where month(Record_Time)=month(now()) order by id desc;";
           return $sql;
         }
         if (isset($_GET['Month']))
@@ -388,5 +389,5 @@ if (isset($_GET['logout'])) {
     <script src="js/demo/chart-area-demo.js"></script>
 
   </body>
-
+  
 </html>

@@ -2,8 +2,12 @@
   - path: .
     memory: 128M
     random-route: true
+    buildpacks:
+      - https://github.com/cloudfoundry/php-buildpack
     instances: 1
-    name: smartmeter 
+    name: smart-meter 
     disk_quota: 1024M
+    services:
+      - Smart Meter
 
    

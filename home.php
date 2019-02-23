@@ -316,7 +316,7 @@ if (isset($_GET['logout'])) {
                 <td><?php echo $row['Average_Voltage']; ?></td>
                 <td><?php echo $row['Avg_power_factor'] ;?></td>
 				        <td><?php echo $row['Neutral_Line_current']; ?></td>
-                <td><?php echo (float)($row['Active_Total_Import']*7.15);?></td>
+                <td><?php echo (float)($row['Active_Total_Import']*8.35);?></td>
                
               
             </tr>
